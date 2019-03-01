@@ -10,8 +10,10 @@ pipeline {
 
    stage ("test") {
      steps {
-       def files = findFiles(glob: 'test/*.properties')
-       echo """${files[0].name} ${files[0].path}"""
+       script {
+         def files = findFiles(glob: 'test/*.properties')
+         echo """${files[0].name} ${files[0].path}"""
+       }
      }
    }
   }
