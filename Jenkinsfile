@@ -1,7 +1,13 @@
 pipeline {
   agent any
-  stages {
 
+   environment {
+      REGIO = "EMEA"
+      BRANCH = "PROD"
+      CONFIG = "TestConf/${REGION}/TestConfigs_${BRANCH}"
+   }
+
+  stages {
    stage ("clean") {
      steps {
        echo "clean"
@@ -11,8 +17,9 @@ pipeline {
    stage ("test") {
      steps {
        script {
-         def files = findFiles(glob: 'test/*.properties')
-         echo """${files[0].name} ${files[0].path}"""
+         for (f in findFiles(glob: '${CONFIG}/*.properties')) {
+	    echo """${f.name}"""	
+	 }
        }
      }
    }
