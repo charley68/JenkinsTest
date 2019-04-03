@@ -17,8 +17,8 @@ pipeline {
    stage ("test") {
      steps {
        script {
-         for (f in findFiles(glob: '${CONFIG}/*.properties')) {
-	    echo """${f.name}"""	
+		def b = load "test.groovy"
+		b.doit()
 	 }
        }
      }
