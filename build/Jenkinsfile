@@ -17,7 +17,11 @@ pipeline {
    stage ("test") {
      steps {
        script {
-		def b = load "test.groovy"
+		echo "ROOT:  ${rootDir}"
+		echo "ROOT@SCRIPT:  ${rootDir}@script/bob"
+
+
+		def b = load "build/test.groovy"
 		b.doit()
 	 }
        }
